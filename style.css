@@ -3,6 +3,13 @@
   padding: 0;
 }
 
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .color {
   display: inline-block;
   border: 1px solid black;
@@ -13,4 +20,17 @@
 
 #black {
   background-color: black;
+}
+
+#pixel-board {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+}
+
+.pixel {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
 }
