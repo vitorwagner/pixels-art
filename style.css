@@ -18,6 +18,10 @@ body {
   border-radius: 100%;
 }
 
+.selected {
+  outline: 5px dashed red;
+}
+
 #black {
   background-color: black;
 }
