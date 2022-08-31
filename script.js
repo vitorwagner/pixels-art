@@ -22,4 +22,15 @@ function selectColor() {
 
 selectColor();
 
+const clearButton = document.getElementById('clear-board');
+clearButton.addEventListener('click', () => {
+  const pixels = document.querySelectorAll('.pixel');
+  for (let index = 0; index < pixels.length; index += 1) {
+    pixels[index].style.backgroundColor = 'white';
+  }
+});
+
+const paletteButton = document.getElementById('button-random-color');
+paletteButton.addEventListener('click', generateRandomPalette);
+
 window.onload = generateRandomPalette;
