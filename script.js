@@ -6,6 +6,7 @@ function randomColor() {
 }
 
 function generateRandomPalette() {
+  document.getElementById('black').style.backgroundColor = 'black';
   document.getElementById('randomColor1').style.backgroundColor = randomColor();
   document.getElementById('randomColor2').style.backgroundColor = randomColor();
   document.getElementById('randomColor3').style.backgroundColor = randomColor();
@@ -32,5 +33,20 @@ clearButton.addEventListener('click', () => {
 
 const paletteButton = document.getElementById('button-random-color');
 paletteButton.addEventListener('click', generateRandomPalette);
+
+const board = document.getElementById('pixel-board');
+
+function paintPixel() {
+  board.addEventListener('click', (event) => {
+    const selectedElement = document.querySelector('.selected');
+    const selectedColor = selectedElement.style.backgroundColor;
+    const selectedPixel = event.target;
+    if (event.target.className === 'pixel') {
+      selectedPixel.style.backgroundColor = selectedColor;
+    }
+  });
+}
+
+paintPixel();
 
 window.onload = generateRandomPalette;
