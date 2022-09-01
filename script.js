@@ -1,3 +1,5 @@
+document.getElementById('black').style.backgroundColor = 'black';
+
 function randomColor() {
   const r = Math.random() * 255;
   const g = Math.random() * 255;
@@ -6,7 +8,6 @@ function randomColor() {
 }
 
 function generateRandomPalette() {
-  document.getElementById('black').style.backgroundColor = 'black';
   document.getElementById('randomColor1').style.backgroundColor = randomColor();
   document.getElementById('randomColor2').style.backgroundColor = randomColor();
   document.getElementById('randomColor3').style.backgroundColor = randomColor();
