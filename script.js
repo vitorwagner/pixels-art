@@ -38,23 +38,23 @@ function selectColor() {
 selectColor();
 
 function saveBoard() {
-  const boardState = [];
+  const pixelBoard = [];
   const pixels = document.querySelectorAll('.pixel');
   for (let index = 0; index < pixels.length; index += 1) {
-    boardState[index] = pixels[index].style.backgroundColor;
+    pixelBoard[index] = pixels[index].style.backgroundColor;
   }
 
-  localStorage.setItem('boardState', JSON.stringify(boardState));
+  localStorage.setItem('pixelBoard', JSON.stringify(pixelBoard));
 }
 
 function getBoard() {
-  if (!localStorage.getItem('boardState')) {
+  if (!localStorage.getItem('pixelBoard')) {
     return;
   }
-  const boardState = JSON.parse(localStorage.getItem('boardState'));
+  const pixelBoard = JSON.parse(localStorage.getItem('pixelBoard'));
   const pixels = document.querySelectorAll('.pixel');
   for (let index = 0; index < pixels.length; index += 1) {
-    pixels[index].style.backgroundColor = boardState[index];
+    pixels[index].style.backgroundColor = pixelBoard[index];
   }
 }
 
