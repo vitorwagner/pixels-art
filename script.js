@@ -20,9 +20,10 @@ function assignRandomPalette() {
     generateRandomPalette();
   }
   const colors = JSON.parse(localStorage.getItem('colorPalette'));
-  document.getElementById('randomColor1').style.backgroundColor = colors[0];
-  document.getElementById('randomColor2').style.backgroundColor = colors[1];
-  document.getElementById('randomColor3').style.backgroundColor = colors[2];
+  const palette = document.querySelectorAll('.color');
+  for (let i = 0; i < palette.length - 1; i += 1) {
+    palette[i + 1].style.backgroundColor = colors[i];
+  }
 }
 
 function selectColor() {
@@ -88,7 +89,7 @@ function paintPixel() {
 
 paintPixel();
 
-window.onload = () => {
+window.addEventListener('load', () => {
   assignRandomPalette();
   getBoard();
-};
+});
