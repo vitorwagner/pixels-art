@@ -27,7 +27,7 @@ body {
   padding: 10px;
 }
 
-#clear-board, #button-random-color {
+#clear-board , #button-random-color {
   height: 2em;
   padding: 0 1em;
 }

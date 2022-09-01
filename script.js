@@ -8,9 +8,21 @@ function randomColor() {
 }
 
 function generateRandomPalette() {
-  document.getElementById('randomColor1').style.backgroundColor = randomColor();
-  document.getElementById('randomColor2').style.backgroundColor = randomColor();
-  document.getElementById('randomColor3').style.backgroundColor = randomColor();
+  const randomColorArray = [];
+  for (let index = 0; index < 3; index += 1) {
+    randomColorArray.push(randomColor());
+  }
+  localStorage.setItem('colorPalette', JSON.stringify(randomColorArray));
+}
+
+function assignRandomPalette() {
+  if (!localStorage.getItem('colorPalette')) {
+    generateRandomPalette();
+  }
+  const colors = JSON.parse(localStorage.getItem('colorPalette'));
+  document.getElementById('randomColor1').style.backgroundColor = colors[0];
+  document.getElementById('randomColor2').style.backgroundColor = colors[1];
+  document.getElementById('randomColor3').style.backgroundColor = colors[2];
 }
 
 function selectColor() {
@@ -33,7 +45,10 @@ clearButton.addEventListener('click', () => {
 });
 
 const paletteButton = document.getElementById('button-random-color');
-paletteButton.addEventListener('click', generateRandomPalette);
+paletteButton.addEventListener('click', () => {
+  generateRandomPalette();
+  assignRandomPalette();
+});
 
 const board = document.getElementById('pixel-board');
 
@@ -50,4 +65,4 @@ function paintPixel() {
 
 paintPixel();
 
-window.onload = generateRandomPalette;
+window.onload = assignRandomPalette;
