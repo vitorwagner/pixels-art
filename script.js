@@ -36,12 +36,34 @@ function selectColor() {
 
 selectColor();
 
+function saveBoard() {
+  const boardState = [];
+  const pixels = document.querySelectorAll('.pixel');
+  for (let index = 0; index < pixels.length; index += 1) {
+    boardState[index] = pixels[index].style.backgroundColor;
+  }
+
+  localStorage.setItem('boardState', JSON.stringify(boardState));
+}
+
+function getBoard() {
+  if (!localStorage.getItem('boardState')) {
+    return;
+  }
+  const boardState = JSON.parse(localStorage.getItem('boardState'));
+  const pixels = document.querySelectorAll('.pixel');
+  for (let index = 0; index < pixels.length; index += 1) {
+    pixels[index].style.backgroundColor = boardState[index];
+  }
+}
+
 const clearButton = document.getElementById('clear-board');
 clearButton.addEventListener('click', () => {
   const pixels = document.querySelectorAll('.pixel');
   for (let index = 0; index < pixels.length; index += 1) {
     pixels[index].style.backgroundColor = 'white';
   }
+  saveBoard();
 });
 
 const paletteButton = document.getElementById('button-random-color');
@@ -60,9 +82,13 @@ function paintPixel() {
     if (event.target.className === 'pixel') {
       selectedPixel.style.backgroundColor = selectedColor;
     }
+    saveBoard();
   });
 }
 
 paintPixel();
 
-window.onload = assignRandomPalette;
+window.onload = () => {
+  assignRandomPalette();
+  getBoard();
+};
