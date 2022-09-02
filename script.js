@@ -133,7 +133,7 @@ generateButton.addEventListener('click', changeBoardSize);
 window.addEventListener('load', () => {
   assignRandomPalette();
   if (!localStorage.getItem('boardSize')) {
-    return;
+    createBoard(5);
   }
   createBoard(localStorage.getItem('boardSize'));
 });
