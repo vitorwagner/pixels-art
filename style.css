@@ -33,7 +33,7 @@ body {
 }
 
 #pixel-board {
-  
+
   --size: 5;
   display: grid;
   grid-template-columns: repeat(var(--size), 1fr);
