@@ -33,9 +33,10 @@ body {
 }
 
 #pixel-board {
+  --size: 5;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(var(--size), 1fr);
+  grid-template-rows: repeat(var(--size), 1fr);
 }
 
 .pixel {

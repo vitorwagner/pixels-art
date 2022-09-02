@@ -1,4 +1,6 @@
 document.getElementById('black').style.backgroundColor = 'black';
+const generateInput = document.getElementById('board-size');
+const generateButton = document.getElementById('generate-board');
 
 function randomColor() {
   const r = Math.random() * 255;
@@ -89,7 +91,51 @@ function paintPixel() {
 
 paintPixel();
 
+function reset() {
+  board.innerHTML = '';
+}
+
+function inputCheck(inputValue) {
+  const size = inputValue;
+  if (size < 5) {
+    localStorage.setItem('boardSize', 5);
+    return 5;
+  } if (size > 50) {
+    localStorage.setItem('boardSize', 50);
+    return 50;
+  }
+  localStorage.setItem('boardSize', size);
+  return size;
+}
+
+function createBoard(N) {
+  const size = inputCheck(N);
+  board.style.setProperty('--size', size);
+  for (let i = 0; i < size * size; i += 1) {
+    const pixelSquare = document.createElement('div');
+    pixelSquare.className = 'pixel';
+    pixelSquare.style.backgroundColor = 'white';
+    board.appendChild(pixelSquare);
+  }
+  getBoard();
+}
+
+function changeBoardSize() {
+  if (generateInput.value === '') {
+    alert('Board inválido!');
+  }
+  reset();
+  createBoard(generateInput.value);
+}
+
+generateButton.addEventListener('click', changeBoardSize);
+
 window.addEventListener('load', () => {
   assignRandomPalette();
-  getBoard();
+  if (!localStorage.getItem('boardSize')) {
+    return;
+  }
+  createBoard(localStorage.getItem('boardSize'));
 });
+
+// Referência para método de criação do board: https://www.youtube.com/watch?v=wZZyhrJxZRU
