@@ -60,14 +60,17 @@ function getBoard() {
   }
 }
 
-const clearButton = document.getElementById('clear-board');
-clearButton.addEventListener('click', () => {
+function clearBoard() {
   const pixels = document.querySelectorAll('.pixel');
   for (let index = 0; index < pixels.length; index += 1) {
     pixels[index].style.backgroundColor = 'white';
   }
   saveBoard();
-});
+}
+
+const clearButton = document.getElementById('clear-board');
+
+clearButton.addEventListener('click', clearBoard);
 
 const paletteButton = document.getElementById('button-random-color');
 paletteButton.addEventListener('click', () => {
@@ -93,6 +96,7 @@ paintPixel();
 
 function reset() {
   board.innerHTML = '';
+  clearBoard();
 }
 
 function inputCheck(inputValue) {
@@ -134,8 +138,9 @@ window.addEventListener('load', () => {
   assignRandomPalette();
   if (!localStorage.getItem('boardSize')) {
     createBoard(5);
+  } else {
+    createBoard(localStorage.getItem('boardSize'));
   }
-  createBoard(localStorage.getItem('boardSize'));
 });
 
 // Referência para método de criação do board: https://www.youtube.com/watch?v=wZZyhrJxZRU
